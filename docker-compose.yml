@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: data-lab-postgres
+
+    environment:
+      POSTGRES_DB: local_db
+      POSTGRES_USER: local_user
+      POSTGRES_PASSWORD: local_password
+
+    ports:
+      - "5433:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database:/docker-entrypoint-initdb.d
+
+volumes:
+  postgres_data:
